@@ -1,5 +1,7 @@
 package com.emmanuel.Bibliotheque.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -10,16 +12,18 @@ public class Exemplaire implements Serializable {
     @Id
     @GeneratedValue
     private Integer idExemplaire;
+    private Integer codeBarre;
     private Date dateRetour;
     private Boolean Prolongation;
     @ManyToOne
     @JoinColumn(name = "id_ouvrage", nullable=false)
     private Ouvrage ouvrage;
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "id_biblio", nullable=false)
     private Biblio biblio;
     @ManyToOne
-    @JoinColumn(name = "id_utilisateur", nullable=true)
+    @JoinColumn(name = "id_utilisateur") //, nullable=true)
     private Utilisateur utilisateur;
 
     public Exemplaire() {
@@ -49,14 +53,22 @@ public class Exemplaire implements Serializable {
         Prolongation = prolongation;
     }
 
-    /*public Ouvrage getOuvrage() {
+    public Integer getCodeBarre() {
+        return codeBarre;
+    }
+
+    public void setCodeBarre(Integer codeBarre) {
+        this.codeBarre = codeBarre;
+    }
+
+    public Ouvrage getOuvrage() {
         return ouvrage;
     }
 
     public void setOuvrage(Ouvrage ouvrage) {
         this.ouvrage = ouvrage;
     }
-*/
+
     public Biblio getBiblio() {
         return biblio;
     }

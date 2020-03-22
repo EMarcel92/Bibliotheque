@@ -1,5 +1,7 @@
 package com.emmanuel.Bibliotheque.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -37,7 +39,74 @@ public class Utilisateur implements Serializable {
     @JoinTable(name = "utilisateur_role", joinColumns = @JoinColumn(name = "utilisateurid"), inverseJoinColumns = @JoinColumn(name = "roleid"))
     private Collection<Role> roles;
 */
+    @JsonBackReference
     @OneToMany(mappedBy="utilisateur", cascade = CascadeType.ALL)
     private List<Exemplaire> exemplaires;
 
+    public Utilisateur() {
+    }
+
+    public Integer getIdUtilisateur() {
+        return idUtilisateur;
+    }
+
+    public void setIdUtilisateur(Integer idUtilisateur) {
+        this.idUtilisateur = idUtilisateur;
+    }
+
+    public String getPseudo() {
+        return pseudo;
+    }
+
+    public void setPseudo(String pseudo) {
+        this.pseudo = pseudo;
+    }
+
+    public String getMotDePasse() {
+        return motDePasse;
+    }
+
+    public void setMotDePasse(String motDePasse) {
+        this.motDePasse = motDePasse;
+    }
+
+    public String getNomUtilisateur() {
+        return nomUtilisateur;
+    }
+
+    public void setNomUtilisateur(String nomUtilisateur) {
+        this.nomUtilisateur = nomUtilisateur;
+    }
+
+    public String getPrenomUtilisateur() {
+        return prenomUtilisateur;
+    }
+
+    public void setPrenomUtilisateur(String prenomUtilisateur) {
+        this.prenomUtilisateur = prenomUtilisateur;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getMotDePasseConfirme() {
+        return motDePasseConfirme;
+    }
+
+    public void setMotDePasseConfirme(String motDePasseConfirme) {
+        this.motDePasseConfirme = motDePasseConfirme;
+    }
+
+    public List<Exemplaire> getExemplaires() {
+        return exemplaires;
+    }
+
+    public void setExemplaires(List<Exemplaire> exemplaires) {
+        this.exemplaires = exemplaires;
+    }
 }

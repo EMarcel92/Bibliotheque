@@ -1,5 +1,7 @@
 package com.emmanuel.Bibliotheque.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -12,8 +14,9 @@ public class Ouvrage implements Serializable {
     private Integer idOuvrage;
     private String titre;
     private String auteur;
-//    @OneToMany(mappedBy = "ouvrage")
-//    private List<Exemplaire> exemplaires;
+    @JsonBackReference
+    @OneToMany(mappedBy = "ouvrage")
+    private List<Exemplaire> exemplaires;
 
     public Ouvrage() {
     }
@@ -41,7 +44,7 @@ public class Ouvrage implements Serializable {
     public void setAuteur(String auteur) {
         this.auteur = auteur;
     }
-/*
+
 
     public List<Exemplaire> getExemplaires() {
         return exemplaires;
@@ -50,5 +53,5 @@ public class Ouvrage implements Serializable {
     public void setExemplaires(List<Exemplaire> exemplaires) {
         this.exemplaires = exemplaires;
     }
-*/
+
 }
