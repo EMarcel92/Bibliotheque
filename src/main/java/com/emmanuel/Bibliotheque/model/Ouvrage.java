@@ -1,7 +1,6 @@
 package com.emmanuel.Bibliotheque.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;

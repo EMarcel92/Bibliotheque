@@ -1,9 +1,7 @@
 package com.emmanuel.Bibliotheque.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -15,6 +13,7 @@ public class Exemplaire implements Serializable {
     private Integer codeBarre;
     private Date dateRetour;
     private Boolean Prolongation;
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "id_ouvrage", nullable=false)
     private Ouvrage ouvrage;
